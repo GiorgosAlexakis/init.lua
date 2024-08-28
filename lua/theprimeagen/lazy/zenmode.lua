@@ -28,10 +28,8 @@ return {
             vim.wo.wrap = false
             vim.wo.number = false
             vim.wo.rnu = false
-            vim.opt.colorcolumn = "0"
+            -- vim.opt.colorcolumn = "0"
             ColorMyPencils()
         end)
     end
 }
-
-

@@ -2,20 +2,20 @@ return {
     {
         "folke/trouble.nvim",
         config = function()
-            require("trouble").setup({
-                icons = false,
-            })
+            require("trouble").setup({})
+            vim.api.nvim_set_keymap(
+              'n',
+              '<leader>tt',
+              "<cmd>Trouble diagnostics toggle filter = { severity=vim.diagnostic.severity.ERROR }<cr>",
+              {silent = true, noremap = true}
+            )
 
-            vim.keymap.set("n", "<leader>tt", function()
-                require("trouble").toggle()
-            end)
-
-            vim.keymap.set("n", "[t", function()
+            vim.keymap.set("n", "]t", function()
                 require("trouble").next({skip_groups = true, jump = true});
             end)
 
-            vim.keymap.set("n", "]t", function()
-                require("trouble").previous({skip_groups = true, jump = true});
+            vim.keymap.set("n", "[t", function()
+                require("trouble").prev({skip_groups = true, jump = true});
             end)
 
         end
