@@ -29,4 +29,20 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+vim.opt.autoread = true
+
+-- set wrap to on
+vim.opt.wrap = true
+-- Enable highlighting of the current line
+vim.opt.cursorline = true
+
+-- Delay screen updates when running macros for smoother performance
+vim.opt.lazyredraw = true
+
+-- Assume the terminal is fast, so Neovim can optimize screen updates
+vim.opt.ttyfast = true
+
+-- Enable highlighting for search results
+vim.opt.hlsearch = true
+
 

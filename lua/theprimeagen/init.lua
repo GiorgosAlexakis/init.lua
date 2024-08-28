@@ -40,26 +40,46 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = ThePrimeagenGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
+})
+
+autocmd("BufWritePre", {
+    group = ThePrimeagenGroup,
+    pattern = "*.go",
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
+
+autocmd("BufWritePre", {
+    group = ThePrimeagenGroup,
+    pattern = "*.py",
+    callback = function()
+        vim.lsp.buf.format()
+    end,
 })
 
 autocmd('LspAttach', {
     group = ThePrimeagenGroup,
     callback = function(e)
         local opts = { buffer = e.buf }
+        -- navigating
+        vim.keymap.set("n", "gh", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        -- vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+        -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        -- vim.keymap.set("n", "gS", function() vim.lsp.buf.workspace_symbol() end, opts)
+        -- actions
+        vim.keymap.set("n", "g.", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "rn", function() vim.lsp.buf.rename() end, opts)
+        -- diagnostics
+        -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
     end
 })
 
