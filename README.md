@@ -201,6 +201,9 @@
 | `Ctrl+i`     | Normal | Jump to the next location                                |
 | `.`          | Normal | Repeat the last command                                  |
 | `:%y+`       | Normal | Yank the entire file to the clipboard                     |
+| `Ctrl+j`     | Normal | Go to next item (telescope)                                |
+| `Ctrl+k`     | Normal | Go to previous item (telescope)                                  |
+
 
 ## Windows Command Mode
 | Shortcut            | Mode   | Functionality/Description                                   |
